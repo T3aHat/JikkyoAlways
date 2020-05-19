@@ -35,7 +35,7 @@ RTを検索から除外する.
 * `num of comments`  
 一度に流れるコメント数.  
 * `fontsize`  
-フォントサイズ.`rec`とすると,`400/(num of comment)`になり,画面に合うフォントサイズになる(かも)  
+フォントサイズ.`rec`とすると,画面に合うフォントサイズになる(仕様は`JikkyoAlways.py`を参照)  
 * `maximum length of comment` 
 コメントの長さ.n文字よりも長いツイートを流れないようにする.  
 * `velocity`  
