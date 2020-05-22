@@ -11,8 +11,7 @@ def move(i):
 
     def x():
         labels[i].place(x=ww+lc[i], y=fontsize*(2*i-0.5))
-        lc[i] -= v+len(nowdatalist[i].text)*acc  # acc=0.05
-        # if(ww+lc[i]<-pttopx(nowdatalist[i].text)):#左端行った
+        lc[i] -= v+len(nowdatalist[i].text)*acc
         if(ww+lc[i] < -labels[i].winfo_reqwidth()):  # 左端行った
             lefted[i] = True
         labels[i].after(1, move(i))
@@ -47,8 +46,8 @@ def reAuth(api):
             select = input("Restart to erase prompt?(y/n):")
             if select == "y":
                 sys.exit()
-            else:  # n,それ以外,何もない時は続行
-                print("Setting finished!Let's enjoy!")
+            else:
+                print("Setting finished!")
                 break
         except Exception as e:
             print(e)
@@ -194,7 +193,7 @@ def update_comment():  # resultsを元にコメを書き換え
 
 
 def Change_word(f):
-    def x(self):  # nestいらなくね?
+    def x(self):
         subf = tkinter.Tk()
         subf.wm_attributes("-topmost", True)
         subf.geometry("300x500")
@@ -279,9 +278,6 @@ def Change_word(f):
         button.pack(side="left")
         button.bind("<1>", lambda word: get_default(f, txt1, bl1, bl2,
                                                     bl3, bl4, bl5, txt2, txt3, txt4, txt5, txt6, txt7))
-
-        print(f.winfo_width())
-        print(f.winfo_height())  # kottitukau
 
         subf.mainloop()
     return x
@@ -398,9 +394,9 @@ def get_word(f, txt1, bl1, bl2, bl3, bl4, bl5, txt2, txt3, txt4, txt5, txt6, txt
     print("colour="+colour)
 
 
-if __name__ == '__main__':  # "##"は今後任意のタイミングで変更可能にする
+if __name__ == '__main__':
     num_comment = 25
-    fontsize = int(400/num_comment)  # これは自動的に画面いっぱいにコメを表示するのに有効.決め打ちもアリ
+    fontsize = int(400/num_comment)
     v = 1
     acc = 0.05
     withoutURL = True
@@ -411,7 +407,7 @@ if __name__ == '__main__':  # "##"は今後任意のタイミングで変更可�
     realtime = False
     colour = "white"
 
-    lefted = []  # if True then went leftside.default False
+    lefted = []
     config = configparser.ConfigParser()
     config.read("config.ini")
     section = "TwitterAPI"
