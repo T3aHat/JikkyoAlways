@@ -6,13 +6,16 @@ LTなどで任意の推奨ハッシュタグを作成し,発表資料上に参�
 tkinterのtransparentcolorがかなり環境依存なため,Windows環境以外では動かない仕様になっています.  
 
 # 推奨環境  
-Win10-64bit  
+Windows10-64bit  
 (JIkkyoAlways.py編集はPython3.7)  
   
+# Download  
+click [here](https://github.com/T3aHat/JikkyoAlways/archive/1.0.zip).  
+latest exe file:[here](https://github.com/T3aHat/JikkyoAlways/raw/master/JikkyoAlways.exe).
 
 # 利用方法  
 * https://developer.twitter.com から`consumer_key`,`consumer_secret`,`access_token`,`access_secret`を取得.  
-* Windows環境でJikkyoAlways.exeをダウンロード.なお,信頼できないサイトからDLしたexeファイルを実行する際は"十分"注意してください.  
+* Windows環境で[JikkyoAlways.exe](https://github.com/T3aHat/JikkyoAlways/raw/master/JikkyoAlways.exe)をダウンロード.なお,信頼できないサイトからDLしたexeファイルを実行する際は"十分"注意してください.  
 * Frameを開いた状態で`Ctrl+s`を押すとGUIによる各種変数の変更可能.  
 * Frameを開いた状態で`Ctrl+t`を押すとツイート可能.  
   
@@ -59,15 +62,6 @@ RTを検索から除外する.
 * `append Search Word`  
 オンにすると,テキストボックス内のテキストの末尾に改行(`\n`)と検索ワードを追加してツイートします．ハッシュタグを追っているときに便利.  
  
-
-# 備忘録
-色々書いてみました.  
-[某動画サイト風にTwitter検索結果を流す【python】](https://qiita.com/teahat/items/1b0b5b51fbd7bb6e3d58)  
-[tkinterで背景が透過するFrameを作る【Python】](https://qiita.com/teahat/items/050b572aad0d1686370b)  
-[tweepyでURLを含むツイートを除外する【Python】](https://qiita.com/teahat/items/3417c91cc111e4f16ef3)  
-[tkinterで作った透過Frameのpyinstallerでの挙動の違い【Python】](https://qiita.com/teahat/items/4aa4611fee3e9ea10bdc)  
-[tkinterでLabelを動かす【Python】](https://qiita.com/teahat/items/a1e70621a62ab3a42ad8)  
-  
   
 # 田所あずさの純真Alwaysはいいぞ
 https://www.youtube.com/watch?v=sBy76SY6zoQ
