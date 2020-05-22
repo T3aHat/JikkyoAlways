@@ -13,11 +13,12 @@ Win10-64bit
 # 利用方法  
 * https://developer.twitter.com から`consumer_key`,`consumer_secret`,`access_token`,`access_secret`を取得.  
 * Windows環境でJikkyoAlways.exeをダウンロード.なお,信頼できないサイトからDLしたexeファイルを実行する際は"十分"注意してください.  
-* Frameを開いた状態で`Ctrl+w`を押すとGUIによる各種変数の変更可能.  
-
-
+* Frameを開いた状態で`Ctrl+s`を押すとGUIによる各種変数の変更可能.  
+* Frameを開いた状態で`Ctrl+t`を押すとツイート可能.  
+  
 # 機能及び変数紹介  
-![Change.png](https://github.com/T3aHat/JikkyoAlways/blob/master/image/Change.png)
+## `ctrl+s`  
+![Change.png](https://github.com/T3aHat/JikkyoAlways/blob/master/image/Change.png)  
 * `Search Word`  
 Twitterで検索するワードを入力.  
 * `withoutURL`  
@@ -47,9 +48,16 @@ RTを検索から除外する.
 コメントのフォントカラー. http://www.science.smith.edu/dftwiki/index.php/Color_Charts_for_TKinter にある`COLORS`で定義されたcolour name,もしくは`#`に続けて8bitでRGB指定できます.(ex.`red`は`#FF0000`に同じ)  
 * Default  
 各種変数をデフォルトに戻す.
-* Change  
-変数の変更を反映.なお,`fontsize`に"hoge"など型エラーを起こすものを入れるとエラーになる.  
+* Apply  
+変数の変更を適用.なお,`fontsize`に"hoge"など型エラーを起こすものを入れるとエラーになる.  
 そこら辺のデバッグはしていないので,察して使用してください...  
+  
+## `Ctrl+t`  
+![tweet.png](https://github.com/T3aHat/JikkyoAlways/blob/master/image/tweet.png)   
+テキストボックスにツイートしたいテキストを入力して`Tweet`ボタンを押すと，API認証しているアカウントからツイートします.  
+正常にツイートできるとテキストボックスの文字が消えます.失敗した場合はエラーコードがテキストボックスに表示されます.  
+* `append Search Word`  
+オンにすると,上のテキストの次に改行(`\n`)した後に検索ワードを追加してツイートします．ハッシュタグを追っているときに便利.  
  
 
 # 備忘録

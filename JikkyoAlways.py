@@ -85,7 +85,7 @@ def lclick(i):
                 print("unlike:"+str(nowdatalist[i].text))
                 api.destroy_favorite(nowdatalist[i].id)
                 labels[i] = (ttk.Label(master=root, text=nowdatalist[i].text, font=(
-                    "メイリオ", fontsize), foreground=colour, background="snow"))
+                    "メイリオ", fontsize), foreground=colour, background="grey"))
             elif (str(labels[i].cget("background")) == "blue"):
                 print("unlike:"+str(nowdatalist[i].text))
                 api.destroy_favorite(nowdatalist[i].id)
@@ -116,7 +116,7 @@ def rclick(i):
                 print("unRT:"+str(nowdatalist[i].text))
                 api.unretweet(nowdatalist[i].id)
                 labels[i] = (ttk.Label(master=root, text=nowdatalist[i].text, font=(
-                    "メイリオ", fontsize), foreground=colour, background="snow"))
+                    "メイリオ", fontsize), foreground=colour, background="grey"))
             elif (str(labels[i].cget("background")) == "blue"):
                 print("unRT:"+str(nowdatalist[i].text))
                 api.unretweet(nowdatalist[i].id)
@@ -175,12 +175,12 @@ def update_comment():  # resultsを元にコメを書き換え
                     labels[i].place_forget()
                     try:  # colourに例外が来た時のため
                         labels[i] = (ttk.Label(master=root, text=nowdatalist[i].text, font=(
-                            "メイリオ", fontsize), foreground=colour, background="snow"))
+                            "メイリオ", fontsize), foreground=colour, background="grey"))
                     except Exception as e:
                         print(e)
                         colour = "white"  # 強制初期化
                         labels[i] = (ttk.Label(master=root, text=nowdatalist[i].text, font=(
-                            "メイリオ", fontsize), foreground=colour, background="snow"))
+                            "メイリオ", fontsize), foreground=colour, background="grey"))
                     labels[i].bind("<1>", lclick(i))
                     labels[i].bind("<3>", rclick(i))
                     lc[i] = 0
@@ -198,7 +198,7 @@ def Change_word(f):
         subf = tkinter.Tk()
         subf.wm_attributes("-topmost", True)
         subf.geometry("300x500")
-        subf.title("Change")
+        subf.title("Settings")
 
         label1 = tkinter.Label(subf, text="Search Word")
         label1.pack()
@@ -270,7 +270,7 @@ def Change_word(f):
         txt7.insert(tkinter.END, colour)
         txt7.pack()
 
-        button = tkinter.Button(subf, text="Change")
+        button = tkinter.Button(subf, text="Apply")
         button.pack(side="right")
         button.bind("<1>", lambda word: get_word(f, txt1, bl1, bl2,
                                                  bl3, bl4, bl5, txt2, txt3, txt4, txt5, txt6, txt7))
@@ -285,6 +285,44 @@ def Change_word(f):
 
         subf.mainloop()
     return x
+
+
+def tweetframe(word):
+    def x(self):
+        twf = tkinter.Tk()
+        twf.wm_attributes("-topmost", True)
+        twf.title("Tweet from @"+me)
+
+        twtxt1 = tkinter.Text(twf, width=40, height=10)
+        twtxt1.pack()
+
+        twbl1 = tkinter.BooleanVar(twf)
+        twbl1.set(True)
+        twf.bind("<Control-Return>", lambda word: tweet(twtxt1, twbl1))
+        twCheckBox1 = tkinter.Checkbutton(
+            twf, text="append "+word.replace("-filter:retweets", ""), variable=twbl1)
+        twCheckBox1.pack(side='left')
+
+        twbtn = tkinter.Button(twf, text="Tweet", bg='#1DA1F2')
+        twbtn.pack(side='right')
+        twbtn.bind("<1>", lambda word: tweet(twtxt1, twbl1))
+
+        twf.mainloop()
+    return x
+
+
+def tweet(twtxt1, twbl1):
+    text = twtxt1.get('1.0', 'end -1c')
+    if(twbl1.get()):
+        text += "\n"+word.replace("-filter:retweets", "")
+    try:
+        api.update_status(text)
+        twtxt1.delete('1.0', 'end')
+        print('Tweet successful!'+str(text))
+    except Exception as e:
+        twtxt1.delete('1.0', 'end')
+        twtxt1.insert(tkinter.END, 'Failed to tweet...\n'+str(e))
+        print(e)
 
 
 def get_default(f, txt1, bl1, bl2, bl3, bl4, bl5, txt2, txt3, txt4, txt5, txt6, txt7):
@@ -341,8 +379,8 @@ def get_word(f, txt1, bl1, bl2, bl3, bl4, bl5, txt2, txt3, txt4, txt5, txt6, txt
     v = int(txt5.get())
     acc = float(txt6.get())
 
-    if(str(txt7.get()) == "snow"):
-        colour = str("white")
+    if(str(txt7.get()) == "grey"):
+        colour = str("light grey")
     else:
         colour = str(txt7.get())
 
@@ -388,6 +426,7 @@ if __name__ == '__main__':  # "##"は今後任意のタイミングで変更可�
     auth = tweepy.OAuthHandler(CK, CS)
     auth.set_access_token(AT, AS)
     api = tweepy.API(auth)
+    me = api.me().screen_name
     word = input("検索ワード:")
     if withoutRT:
         word += " -filter:retweets"
@@ -405,12 +444,13 @@ if __name__ == '__main__':  # "##"は今後任意のタイミングで変更可�
     wh = windll.user32.GetSystemMetrics(1)
     root = tkinter.Tk()
     root.wm_attributes("-topmost", True)
-    root.wm_attributes("-transparentcolor", "snow")
+    root.wm_attributes("-transparentcolor", "grey")
     # root.wm_attributes("-fullscreen",True)#閉じられなくなるから処理が必要
-    ttk.Style().configure("TP.TFrame", background="snow")
+    ttk.Style().configure("TP.TFrame", background="grey")
     root.title("JikkyoAlways")
     f = ttk.Frame(master=root, style="TP.TFrame", width=ww, height=wh)
-    root.bind("<Control-Key-w>", Change_word(f))
+    root.bind("<Control-Key-s>", Change_word(f))
+    root.bind("<Control-Key-t>", tweetframe(word))
     f.pack()
 
     j = 0
@@ -429,12 +469,12 @@ if __name__ == '__main__':  # "##"は今後任意のタイミングで変更可�
                 nowdatalist[i].text = ""
                 lefted[i] = True
             labels.append(ttk.Label(master=root, text=nowdatalist[i].text.replace(
-                "\n", " "), font=("メイリオ", fontsize), foreground=colour, background="snow"))
+                "\n", " "), font=("メイリオ", fontsize), foreground=colour, background="grey"))
         else:
             nowdatalist.append(nowdatalist[0])  # padding(改良の余地あり)
             nowdatalist[-1].text = ""  # padding
             labels.append(ttk.Label(master=root, text=nowdatalist[i].text, font=(
-                "メイリオ", fontsize), foreground=colour, background="snow"))
+                "メイリオ", fontsize), foreground=colour, background="grey"))
 
     for i in range(num_comment):
         labels[i].bind("<1>", lclick(i))
