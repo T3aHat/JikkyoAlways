@@ -24,6 +24,8 @@ latest exe file:[here](https://github.com/T3aHat/JikkyoAlways/raw/master/JikkyoA
 ![Change.png](https://github.com/T3aHat/JikkyoAlways/blob/master/image/Change.png)  
 * `Search Word`  
 Twitterで検索するワードを入力.  
+* `bold`  
+コメントを太字にする.  
 * `withoutURL`  
 URL(メディア,引用RT)を含むツイートを非表示にする.  
 * `withoutRT`  
