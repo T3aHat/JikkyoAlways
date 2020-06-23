@@ -10,7 +10,7 @@ Windows10-64bit
 (JIkkyoAlways.py編集はPython3.7)  
   
 # Download  
-JikkyoAlways releases:[here](https://github.com/T3aHat/JikkyoAlways/releases).  
+releases:[here](https://github.com/T3aHat/JikkyoAlways/releases).  
 latest exe file:[here](https://github.com/T3aHat/JikkyoAlways/raw/master/JikkyoAlways.exe).
 
 # 利用方法  
