@@ -327,7 +327,7 @@ def tweetframe(word):
 def tweet(twtxt1, twbl1):
     text = twtxt1.get('1.0', 'end -1c')
     if(twbl1.get()):
-        text += "\n"+word.replace(" -filter:retweets", "")
+        text += word.replace(" -filter:retweets", "")
     try:
         api.update_status(text)
         twtxt1.delete('1.0', 'end')
