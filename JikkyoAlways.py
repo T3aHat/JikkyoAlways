@@ -300,34 +300,32 @@ def Change_word(f):
     return x
 
 
-def tweetframe(word):
-    def x(self):
-        twf = tkinter.Tk()
-        twf.wm_attributes("-topmost", True)
-        twf.title("Tweet from @"+me)
+def tweetframe(event):
+    twf = tkinter.Tk()
+    twf.wm_attributes("-topmost", True)
+    twf.title("Tweet from @"+me)
 
-        twtxt1 = tkinter.Text(twf, width=40, height=10)
-        twtxt1.pack()
+    twtxt1 = tkinter.Text(twf, width=40, height=10)
+    twtxt1.pack()
 
-        twbl1 = tkinter.BooleanVar(twf)
-        twbl1.set(True)
-        twf.bind("<Control-Return>", lambda word: tweet(twtxt1, twbl1))
-        twCheckBox1 = tkinter.Checkbutton(
-            twf, text="append "+word.replace(" -filter:retweets", ""), variable=twbl1)
-        twCheckBox1.pack(side='left')
+    twbl1 = tkinter.BooleanVar(twf)
+    twbl1.set(True)
+    twf.bind("<Control-Return>", lambda word: tweet(twtxt1, twbl1))
+    twCheckBox1 = tkinter.Checkbutton(
+        twf, text="append "+word.replace(" -filter:retweets", ""), variable=twbl1)
+    twCheckBox1.pack(side='left')
 
-        twbtn = tkinter.Button(twf, text="Tweet", bg='#1DA1F2')
-        twbtn.pack(side='right')
-        twbtn.bind("<1>", lambda word: tweet(twtxt1, twbl1))
+    twbtn = tkinter.Button(twf, text="Tweet", bg='#1DA1F2')
+    twbtn.pack(side='right')
+    twbtn.bind("<1>", lambda word: tweet(twtxt1, twbl1))
 
-        twf.mainloop()
-    return x
+    twf.mainloop()
 
 
 def tweet(twtxt1, twbl1):
     text = twtxt1.get('1.0', 'end -1c')
     if(twbl1.get()):
-        text += word.replace(" -filter:retweets", "")
+        text += "\n"+word.replace(" -filter:retweets", "")
     try:
         api.update_status(text)
         twtxt1.delete('1.0', 'end')
@@ -485,7 +483,7 @@ if __name__ == '__main__':
     root.title("JikkyoAlways")
     f = ttk.Frame(master=root, style="TP.TFrame", width=ww, height=wh)
     root.bind("<Control-Key-s>", Change_word(f))
-    root.bind("<Control-Key-t>", tweetframe(word))
+    root.bind("<Control-Key-t>", tweetframe)
     root.bind("<Control-Key-f>", fullscreen(fs))
     f.pack()
 
