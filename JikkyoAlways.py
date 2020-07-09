@@ -159,7 +159,7 @@ def update_comment():  # resultsを元にコメを書き換え
     global j, results, nowdatalist, colour, rmwd
     k = 0
     for i in range(num_comment):
-        if(k != 0 and k % 2 == 0):
+        if(k != 0 and k % (int(len(results)/5)+1) == 0):
             k += 1
             break
         if(lefted[i] == True):  # went left.So update comment
@@ -329,7 +329,7 @@ def tweet(twtxt1, twbl1):
     try:
         api.update_status(text)
         twtxt1.delete('1.0', 'end')
-        print('Tweet successful!'+str(text))
+        print('Tweet successful!\n'+str(text))
     except Exception as e:
         twtxt1.delete('1.0', 'end')
         twtxt1.insert(tkinter.END, 'Failed to tweet...\n'+str(e))
