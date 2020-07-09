@@ -151,7 +151,7 @@ def get_newcomment():
             results = api.search(
                 q=word, count=lefted.count(True), since_id=latestid)
         labels[0].after(5050, get_newcomment)
-    else:  # 流れ切ったのがないからnmsごとにleftedがあるか見直す
+    else:
         labels[0].after(100, get_newcomment)
 
 
