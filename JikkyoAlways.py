@@ -143,7 +143,7 @@ def get_newcomment():
     global realtime
     j = 0
     if(lefted.count(True) > 0):  # 流れ切ったコメがある
-        if (len(results) > 0):  # resultsがあればlatestid更新.ない場合は前のまま
+        if (len(results) > 0):
             latestid = results[0].id
         if(realtime):
             results = api.search(q=word, count=lefted.count(True))
