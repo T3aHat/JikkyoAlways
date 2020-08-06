@@ -198,7 +198,7 @@ def Change_word(f):
     def x(self):
         subf = tkinter.Tk()
         subf.wm_attributes("-topmost", True)
-        subf.geometry("300x500")
+        subf.geometry("300x600")
         subf.title("Settings")
 
         label1 = tkinter.Label(subf, text="Search word")
@@ -286,6 +286,17 @@ def Change_word(f):
         txt7.insert(tkinter.END, colour)
         txt7.pack()
 
+        def transparency(n):
+            root.attributes("-alpha", float(int(n)/100))
+
+        label8 = tkinter.Label(
+            subf, text="transparency")
+        label8.pack()
+        scale1 = tkinter.Scale(subf, from_=10, to=100, resolution=10,
+                               tickinterval=90, orient=tkinter.HORIZONTAL, command=transparency)
+        scale1.set(100)
+        scale1.pack()
+
         button = tkinter.Button(subf, text="Apply")
         button.pack(side="right")
         button.bind("<1>", lambda word: get_word(f, txt1, bl1, bl2,
@@ -360,6 +371,19 @@ def get_default(f, txt1, bl1, bl2, bl3, bl4, bl5, bl6, bl7, txt2, txt3, txt4, tx
     txt7.insert(tkinter.END, "white")
 
 
+def reinit(b, a):
+    for i in range(b, a):
+        lefted.append(True)
+        lc.append(0)
+        nowdatalist.append(nowdatalist[0])  # padding(改良の余地あり)
+        nowdatalist[-1].text = ""  # padding
+        labels.append(ttk.Label(master=root, text=nowdatalist[i].text, font=(
+            "メイリオ", fontsize, bold), foreground=colour, background="grey"))
+        labels[i].bind("<1>", lclick(i))
+        labels[i].bind("<3>", rclick(i))
+        labels[i].after(1, move(i))
+
+
 def get_word(f, txt1, bl1, bl2, bl3, bl4, bl5, bl6, bl7, txt2, txt3, txt4, txt5, txt6, txt7):
     global word, withoutURL, withoutRT, enable_fav, enable_rt, realtime, rmwd, bold, num_comment, fontsize, max_length, v, acc, colour
 
@@ -376,6 +400,8 @@ def get_word(f, txt1, bl1, bl2, bl3, bl4, bl5, bl6, bl7, txt2, txt3, txt4, txt5,
         bold = "bold"
     else:
         bold = "normal"
+    if(int(txt2.get())-num_comment > 0):
+        reinit(num_comment, int(txt2.get()))
     num_comment = int(txt2.get())
     if(txt3.get() == "rec"):
         i = 1
@@ -430,7 +456,7 @@ def fullscreen(fs):
 
 
 if __name__ == '__main__':
-    num_comment = 25
+    num_comment = 15
     fontsize = int(400/num_comment)
     v = 1
     acc = 0.05
@@ -479,6 +505,7 @@ if __name__ == '__main__':
     root = tkinter.Tk()
     root.wm_attributes("-topmost", True)
     root.wm_attributes("-transparentcolor", "grey")
+    root.attributes("-alpha", 1)
     ttk.Style().configure("TP.TFrame", background="grey")
     root.title("JikkyoAlways")
     f = ttk.Frame(master=root, style="TP.TFrame", width=ww, height=wh)
@@ -513,6 +540,7 @@ if __name__ == '__main__':
             nowdatalist[-1].text = ""  # padding
             labels.append(ttk.Label(master=root, text=nowdatalist[i].text, font=(
                 "メイリオ", fontsize, bold), foreground=colour, background="grey"))
+            lefted[i] = True
 
     for i in range(num_comment):
         labels[i].bind("<1>", lclick(i))
